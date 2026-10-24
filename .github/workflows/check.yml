@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Recursive uploader regressions
+        run: |
+          python3 -m unittest discover -s tests -v
+          bash -n upload-images.sh
       - name: Check image contents and catalogue coverage
         run: |
           sha256sum --check --quiet images.sha256
@@ -21,9 +25,9 @@ jobs:
           rows = Path('images.sha256').read_text().splitlines()
           listed = [row.split('  ', 1)[1] for row in rows]
           assert len(listed) == len(set(listed)), 'duplicate picture name'
-          actual = {str(p) for p in Path('.').rglob('*') if p.suffix.lower() in {'.png', '.webp', '.jpg', '.jpeg', '.gif', '.avif'}}
+          actual = {str(p) for p in Path('images').rglob('*') if p.suffix.lower() in {'.png', '.webp', '.jpg', '.jpeg', '.gif', '.avif'}}
           assert actual == set(listed), 'update images.sha256 for added or removed pictures'
           assert all(Path(name).stat().st_size <= 16 * 1024 * 1024 for name in listed)
-          assert Path('clothing/ATTRIBUTION.md').is_file()
+          assert Path('docs/ATTRIBUTION.md').is_file()
           print(f'{len(listed)} image hashes and credits checked')
           PYTEST
