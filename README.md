@@ -39,10 +39,11 @@ in-game check with your own account.
 
 ## Custom pictures
 
-Clone this repository next to `opx_infinity` as `opx_images`. Replace or add
-pictures using their catalogue names, then run the uploader from OPX again.
-Alternatively pass `--images-dir /path/to/images`. Garments use the `clothing/`
-subdirectory. Images remain outside `opx_infinity`.
+Clone this repository next to `opx_infinity` as `opx_images`. Add or replace
+pictures under `images/`, using their catalogue names, then run the uploader from OPX again.
+Alternatively pass `--images-dir /path/to/images`. The uploader scans every
+subdirectory recursively; garments live under `images/clothing/`. Relative names
+are preserved. Images remain outside `opx_infinity`.
 
 Supported formats: PNG, WebP, JPEG, GIF, AVIF; maximum 16 MiB per file. The uploader
 never deletes old CDN uploads. Storage and bandwidth follow your Fivemanage plan.
@@ -66,4 +67,4 @@ Repository documentation and original tooling are MIT licensed, copyright
 Cyberpunk 2077 images remain copyright CD PROJEKT RED; Cyberpunk 2077 is a
 trademark of CD PROJEKT S.A. This is an unofficial fan project, not affiliated
 with CD PROJEKT RED. See [NOTICE.md](NOTICE.md) and
-[garment attribution](clothing/ATTRIBUTION.md) for sources and rights.
+[garment attribution](docs/ATTRIBUTION.md) for sources and rights.

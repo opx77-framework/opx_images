@@ -6,7 +6,7 @@ non-commercial fan framework. The repository MIT licence does not grant rights
 to third-party game assets or trademarks.
 
 Garment source details and wiki credits are recorded in
-[clothing/ATTRIBUTION.md](clothing/ATTRIBUTION.md), carried over from the framework.
+[docs/ATTRIBUTION.md](docs/ATTRIBUTION.md), carried over from the framework.
 The remaining inventory icons were carried over unchanged from opx_infinity;
 no additional source or licence claims are made for them here.
 
