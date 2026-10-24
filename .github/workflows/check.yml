@@ -1,0 +1,29 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check image contents and catalogue coverage
+        run: |
+          sha256sum --check --quiet images.sha256
+          python3 - <<'PYTEST'
+          from pathlib import Path
+          rows = Path('images.sha256').read_text().splitlines()
+          listed = [row.split('  ', 1)[1] for row in rows]
+          assert len(listed) == len(set(listed)), 'duplicate picture name'
+          actual = {str(p) for p in Path('.').rglob('*') if p.suffix.lower() in {'.png', '.webp', '.jpg', '.jpeg', '.gif', '.avif'}}
+          assert actual == set(listed), 'update images.sha256 for added or removed pictures'
+          assert all(Path(name).stat().st_size <= 16 * 1024 * 1024 for name in listed)
+          assert Path('clothing/ATTRIBUTION.md').is_file()
+          print(f'{len(listed)} image hashes and credits checked')
+          PYTEST

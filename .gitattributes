@@ -1,0 +1,8 @@
+*.png binary
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.avif binary
+*.md text eol=lf
+*.sha256 text eol=lf
