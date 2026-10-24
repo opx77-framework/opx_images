@@ -32,6 +32,8 @@ fetches this package temporarily when needed, checks the expected SHA-256 hashes
 uploads pictures to your account and installs the public name-to-URL map. Existing
 uploads are reused; no token is saved or sent to players. Restart the OPX resource
 after publishing. Catalogue entries remain file names such as `water.png`.
+Fivemanage setup is required: without it, OPX displays text monograms and no
+inventory or garment pictures. There is no local-image mode.
 
 The CDN integration is being introduced in `opx_infinity`; older installations
 need that update before using these scripts. Live uploads and rendering need an
@@ -41,9 +43,9 @@ in-game check with your own account.
 
 Clone this repository next to `opx_infinity` as `opx_images`. Add or replace
 pictures under `images/`, using their catalogue names, then run the uploader from OPX again.
-Alternatively pass `--images-dir /path/to/images`. The uploader scans every
-subdirectory recursively; garments live under `images/clothing/`. Relative names
-are preserved. Images remain outside `opx_infinity`.
+The uploader scans all pictures in `images/` and every subdirectory recursively.
+Garments live under `images/clothing/`. Relative names are preserved. Images
+remain outside `opx_infinity`. Use the same upload script after changing pictures.
 
 Supported formats: PNG, WebP, JPEG, GIF, AVIF; maximum 16 MiB per file. The uploader
 never deletes old CDN uploads. Storage and bandwidth follow your Fivemanage plan.
