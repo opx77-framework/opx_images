@@ -37,7 +37,8 @@ class Client:
     self.next_stamp = int(time.time() * 1000)
 
   def request(self, query='', body=None, content_type=None):
-    headers = {'Authorization': self.key, 'Accept': 'application/json'}
+    # Cloudflare in front of the API refuses urllib's default agent with a 403.
+    headers = {'Authorization': self.key, 'Accept': 'application/json', 'User-Agent': 'opx_images-uploader/1.0'}
     if content_type:
       headers['Content-Type'] = content_type
     request = urllib.request.Request(API + query, data=body, headers=headers)
